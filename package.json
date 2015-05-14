@@ -25,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/SamVerschueren/gulp-cordova-preference/issues"
   },
-  "homepage": "https://github.com/SamVerschueren/gulp-cordova-preference"
+  "homepage": "https://github.com/SamVerschueren/gulp-cordova-preference",
+  "dependencies": {
+    "gulp-util": "^3.0.4",
+    "through2": "^0.6.5"
+  }
 }
