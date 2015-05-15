@@ -10,6 +10,7 @@
 // module dependencies
 var path = require('path'),
     through = require('through2'),
+    gutil = require('gulp-util'),
     Config = require('./lib/config');
 
 // export the module
@@ -32,15 +33,20 @@ module.exports = function(name, value) {
 
         cb();
     }, function(cb) {
-        // Load the config.xml file
-        var config = new Config(path.join(project.path, 'config.xml'));
+        try {
+            // Load the config.xml file
+            var config = new Config(path.join(project.path, 'config.xml'));
 
-        // Iterate over the preferences and update the preference
-        for(var name in prefs) {
-            config.setPreference(name, prefs[name]);
+            // Iterate over the preferences and update the preference
+            for(var name in prefs) {
+                config.setPreference(name, prefs[name]);
+            }
+
+            // Write the config file
+            config.write(cb);
         }
-
-        // Write the config file
-        config.write(cb);
+        catch(err) {
+            cb(new gutil.PluginError('gulp-cordova-preference', err.message));
+        }
     });
 };
