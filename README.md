@@ -9,7 +9,46 @@ npm install --save-dev gulp-cordova-preference
 ```
 ## Usage
 
-`TODO`
+This plugin can be used in two different ways. The first way is by passing an object with key-value pairs
+as parameter. The key will be used as name of the preference, the value will be used as value.
+
+```JavaScript
+var gulp = require('gulp'),
+    create = require('gulp-cordova-create'),
+    pref = require('gulp-cordova-preference');
+
+gulp.task('build', function() {
+    return gulp.src('dist')
+        .pipe(create())
+        .pipe(pref({
+            'AndroidLaunchMode': 'singleTop',
+            'ShowTitle': true
+        });
+});
+```
+
+The second way is by providing two parameters, the first one being the name of the preference, the second
+one as the value of the preference.
+
+```JavaScript
+var gulp = require('gulp'),
+    create = require('gulp-cordova-create'),
+    pref = require('gulp-cordova-preference');
+
+gulp.task('build', function() {
+    return gulp.src('dist')
+        .pipe(create())
+        .pipe(pref('AndroidLaunchMode', 'singleTop'))
+        .pipe(pref('ShowTitle', true));
+});
+```
+
+If a preference with the name `ShowTitle` or `AndroidLaunchMode` already exists, it will overwrite the old value
+with the new value.
+
+Notice that the second way of adding preferences to your config file is slower because it has to parse the XML file
+every time the plugin is executed. If you pass in an object with key-value pairs, it will only parse the config file
+once.
 
 ## API
 
