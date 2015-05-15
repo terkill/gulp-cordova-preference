@@ -15,7 +15,14 @@ var path = require('path'),
 // export the module
 module.exports = function(name, value) {
 
-    var project;
+    var project,
+        prefs = name;
+
+    if(typeof name !== 'object') {
+        // If name is not an object, it is the key and value is the value
+        prefs = {};
+        prefs[name] = value;
+    }
 
     return through.obj(function(file, enc, cb) {
         project = file;
@@ -28,8 +35,10 @@ module.exports = function(name, value) {
         // Load the config.xml file
         var config = new Config(path.join(project.path, 'config.xml'));
 
-        // Set the preference
-        config.setPreference(name, value);
+        // Iterate over the preferences and update the preference
+        for(var name in prefs) {
+            config.setPreference(name, prefs[name]);
+        }
 
         // Write the config file
         config.write(cb);
