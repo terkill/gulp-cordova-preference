@@ -27,6 +27,8 @@ gulp.task('build', function() {
 });
 ```
 
+> Tip: You can add the preferences in a file called `prefs.json` and call the plugin with `pref(require('./prefs.json'))`.
+
 The second way is by providing two parameters, the first one being the name of the preference, the second
 one as the value of the preference.
 
