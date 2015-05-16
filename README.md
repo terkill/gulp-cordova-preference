@@ -2,7 +2,7 @@
 
 > Set a preference of your cordova project
 
-## Installation (not yet available)
+## Installation
 
 ```bash
 npm install --save-dev gulp-cordova-preference
