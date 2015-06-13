@@ -65,8 +65,6 @@ A key-value pair object where the key is the name of the preference and the valu
 
 ### preference(name, value)
 
-#### options
-
 ##### name
 
 *Required*  
