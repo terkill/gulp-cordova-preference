@@ -11,7 +11,7 @@
 var path = require('path'),
     through = require('through2'),
     gutil = require('gulp-util'),
-    Config = require('./lib/config');
+    Config = require('cordova-config');
 
 // export the module
 module.exports = function(name, value) {
