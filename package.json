@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/SamVerschueren/gulp-cordova-preference",
   "dependencies": {
-    "cordova-config": "^0.3.0",
+    "cordova-config": "git://github.com/terkill/cordova-config.git#master",
     "elementtree": "^0.1.6",
     "gulp-util": "^3.0.4",
     "through2": "^0.6.5"

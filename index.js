@@ -14,7 +14,12 @@ var path = require('path'),
     Config = require('cordova-config');
 
 // export the module
-module.exports = function(name, value) {
+module.exports = function(platform, name, value) {
+    if (typeof platform === 'object' || (!value && typeof name !== 'object')) {
+        value = name;
+        name = platform;
+        platform = undefined;
+    }
 
     var project,
         prefs = name;
@@ -39,7 +44,12 @@ module.exports = function(name, value) {
 
             // Iterate over the preferences and update the preference
             for(var name in prefs) {
-                config.setPreference(name, prefs[name]);
+                if (platform) {
+                    config.setPlatformPreference(platform, name, prefs[name]);
+                }
+                else {
+                    config.setPreference(name, prefs[name]);
+                }
             }
 
             // Write the config file
